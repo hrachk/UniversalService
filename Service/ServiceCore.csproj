@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp3.1;net48</TargetFrameworks>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+ 
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net48'">
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0"/>
+    <Compile Remove="Extensions\HostExtensions\HostExtensions.cs"/>
+    <None Include="Extensions\HostExtensions.cs"/>
+  </ItemGroup>
+
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <Compile Remove="WindowsService\**\*.cs"/>
+    <None Include="WindowsService\**\*.cs"/>
+    <Compile Remove="Extensions\HostExtensions\WindowsHostExtensions.cs"/>
+    <None Include="Extensions\HostExtensions\WindowsHostExtensions.cs"/>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

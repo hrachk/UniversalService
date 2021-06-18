@@ -1,0 +1,5 @@
+{
+    "WorkersCount": 1,
+    "RunInterval": 10,
+    "ResultPath" :  "D:\\result.txt"
+}
